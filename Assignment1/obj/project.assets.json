@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\bootcamp-project\\Assignment1\\Assignment1.csproj",
+      "projectUniqueName": "e:\\OCBC-H8\\Assignment1\\Assignment1.csproj",
       "projectName": "Assignment1",
-      "projectPath": "E:\\bootcamp-project\\Assignment1\\Assignment1.csproj",
+      "projectPath": "e:\\OCBC-H8\\Assignment1\\Assignment1.csproj",
       "packagesPath": "C:\\Users\\Borax\\.nuget\\packages\\",
-      "outputPath": "E:\\bootcamp-project\\Assignment1\\obj\\",
+      "outputPath": "e:\\OCBC-H8\\Assignment1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
