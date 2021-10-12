@@ -1,0 +1,16 @@
+E:\bootcamp-project\Session 1\hello-cs\bin\Debug\net5.0\hello-cs.exe
+E:\bootcamp-project\Session 1\hello-cs\bin\Debug\net5.0\hello-cs.deps.json
+E:\bootcamp-project\Session 1\hello-cs\bin\Debug\net5.0\hello-cs.runtimeconfig.json
+E:\bootcamp-project\Session 1\hello-cs\bin\Debug\net5.0\hello-cs.runtimeconfig.dev.json
+E:\bootcamp-project\Session 1\hello-cs\bin\Debug\net5.0\hello-cs.dll
+E:\bootcamp-project\Session 1\hello-cs\bin\Debug\net5.0\ref\hello-cs.dll
+E:\bootcamp-project\Session 1\hello-cs\bin\Debug\net5.0\hello-cs.pdb
+E:\bootcamp-project\Session 1\hello-cs\obj\Debug\net5.0\hello-cs.csproj.AssemblyReference.cache
+E:\bootcamp-project\Session 1\hello-cs\obj\Debug\net5.0\hello-cs.GeneratedMSBuildEditorConfig.editorconfig
+E:\bootcamp-project\Session 1\hello-cs\obj\Debug\net5.0\hello-cs.AssemblyInfoInputs.cache
+E:\bootcamp-project\Session 1\hello-cs\obj\Debug\net5.0\hello-cs.AssemblyInfo.cs
+E:\bootcamp-project\Session 1\hello-cs\obj\Debug\net5.0\hello-cs.csproj.CoreCompileInputs.cache
+E:\bootcamp-project\Session 1\hello-cs\obj\Debug\net5.0\hello-cs.dll
+E:\bootcamp-project\Session 1\hello-cs\obj\Debug\net5.0\ref\hello-cs.dll
+E:\bootcamp-project\Session 1\hello-cs\obj\Debug\net5.0\hello-cs.pdb
+E:\bootcamp-project\Session 1\hello-cs\obj\Debug\net5.0\hello-cs.genruntimeconfig.cache
