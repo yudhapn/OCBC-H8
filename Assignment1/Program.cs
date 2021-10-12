@@ -11,6 +11,7 @@ namespace Assignment1
             Task3 task3 = new Task3();
             Task4 task4 = new Task4();
             Task5 task5 = new Task5();
+            Task6 task6 = new Task6();
 
             while (true)
             {
@@ -21,6 +22,7 @@ namespace Assignment1
                 Console.WriteLine("3. Task 3 (Factorial)");
                 Console.WriteLine("4. Task 4 (Reverse Number)");
                 Console.WriteLine("5. Task 5 (Convert Number To Alphabet Number)");
+                Console.WriteLine("6. Task 6 (Is It A Palidrome?)");
                 Console.WriteLine("7. About Me (Coder Profile)");
                 Console.Write("\nChoose number: ");
                 string currentTaskNumber = Console.ReadLine();
@@ -41,6 +43,9 @@ namespace Assignment1
                     case "5":
                         task5.start();
                         break;
+                    case "6":
+                        task6.start();
+                        break;
                     case "7":
                         printCoderProfile();
                         break;
@@ -58,7 +63,6 @@ namespace Assignment1
             Console.WriteLine("Name\t\t\t: Yudha Pratama Nursam");
             Console.WriteLine("Participant Number\t: Yudha Pratama Nursam");
             Console.WriteLine("Address\t\t\t: Kota Malang");
-
         }
     }
 }
