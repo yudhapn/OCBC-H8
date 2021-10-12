@@ -35,7 +35,7 @@ namespace Assignment1
                     // Jika indeks baris saat ini > Jumlah element karakter spasi + Jumlah baris saat ini - 1 (daerah kosong sebelah kanan)
                     if (j < spaceCharLength || j > (spaceCharLength + (currentRowLength - 1)))
                     {
-                        arrNumber[i, j] = '*';
+                        arrNumber[i, j] = ' ';
                     }
                     else
                     {
