@@ -12,16 +12,8 @@ namespace Project2
         }
         static void Main(string[] args)
         {
-            Pesawat pesawatTempur = new PesawatTempur();
-            pesawatTempur.name = "Sukhoi Su-30";
-            pesawatTempur.wheelAmount = 4;
-            pesawatTempur.passengerAmount = 2;
-            pesawatTempur.height = "1500 kaki";
-            Console.WriteLine();
-
             Overload overload = new Overload();
             Override ovrd = new Override();
-
             while (true)
             {
                 Console.WriteLine("=========== Welcome To Sesion 5 ===========");
@@ -36,13 +28,13 @@ namespace Project2
                 {
                     case "1":
                         Console.WriteLine("=== Output Inheritance & Polymorphism ===");
+                        Pesawat pesawatTempur = new PesawatTempur();
                         pesawatTempur.terbang();
                         pesawatTempur.sudahTerbang();
                         break;
                     case "2":
                         Console.WriteLine("=== Output overload method with params string ===");
                         overload.print("Foxy");
-                        Console.WriteLine();
                         Console.WriteLine("=== Output overload method with params double ===");
                         overload.print(081122334455);
                         break;
