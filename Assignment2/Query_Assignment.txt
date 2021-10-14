@@ -1,0 +1,298 @@
+NamaPeserta   : YudhaPratamaNursam
+Kode Peserta  : FSDO001ONL020
+Tugas         : Assignment 2
+
+CREATE DATABASE db_bank
+
+CREATE TABLE tb_customer(
+	customerNumber int NOT NULL,
+	customerName varchar(30),
+	contactLastName varchar(20),
+	contactFirstName varchar(20),
+	phone varchar(20),
+	addressLine1 varchar(50),
+	addressLine2 varchar(50),
+	city varchar(20),
+	state varchar(20),
+	postalCode varchar(20),
+	country varchar(20),
+	salesRepEmployeeNumber int NOT NULL,
+	creditLimit int
+)
+
+CREATE TABLE tb_product(
+	productCode int NOT NULL,
+	productName varchar(30),
+	productLine int NOT NULL,
+	productScale varchar(30),
+	productVendor varchar(30),
+	productDescription varchar(50),
+	quantityInStock int,
+	buyPrice int,
+	MSRP varchar(30)
+)
+
+CREATE TABLE tb_productlines(
+	productLine int NOT NULL,
+	textDescription varchar(50),
+	htmlDescription varchar(50),
+	image varchar(60)
+)
+
+CREATE TABLE tb_order(
+	orderNumber int NOT NULL,
+	orderDate date,
+	requiredDate date,
+	shippedDate date,
+	status varchar(20),
+	comments varchar(50),
+	customerNumber int NOT NULL
+)
+
+CREATE TABLE tb_orderDetail(
+	orderNumber int NOT NULL,
+	productCode int NOT NULL,
+	quantityOrder int,
+	priceEach int,
+	orderLineNumber int
+)
+
+CREATE TABLE tb_payment(
+	customerNumber int NOT NULL,
+	checkNumber int NOT NULL,
+	paymentDate date,
+	amount int
+)
+
+CREATE TABLE tb_employee(
+	employeeNumber int NOT NULL,
+	lastName varchar(20),
+	firstName varchar(20),
+	extension varchar(20),
+	email varchar(30),
+	officeCode int NOT NULL,
+	reportsTo int NOT NULL,
+	jobTitle varchar(20),
+)
+
+CREATE TABLE tb_office(
+	officeCode int NOT NULL,
+	city varchar(20),
+	phone varchar(20),
+	addressLine1 varchar(50),
+	addressLine2 varchar(50),
+	state varchar(20),
+	country varchar(20),
+	postalCode varchar(20),
+	territory varchar(20),
+)
+
+ALTER TABLE tb_customer ADD CONSTRAINT pk_customer PRIMARY KEY (customerNumber)
+
+ALTER TABLE tb_product ADD CONSTRAINT pk_product PRIMARY KEY (productCode)
+
+ALTER TABLE tb_productlines ADD CONSTRAINT pk_productlines PRIMARY KEY (productLine)
+
+ALTER TABLE tb_order ADD CONSTRAINT pk_order PRIMARY KEY (orderNumber)
+
+ALTER TABLE tb_payment ADD CONSTRAINT pk_payment PRIMARY KEY (checkNumber)
+
+ALTER TABLE tb_employee ADD CONSTRAINT pk_employee PRIMARY KEY (employeeNumber)
+
+ALTER TABLE tb_office ADD CONSTRAINT pk_office PRIMARY KEY (officeCode)
+
+ALTER TABLE tb_customer ADD CONSTRAINT fk_customer_employee FOREIGN KEY (salesRepEmployeeNumber) REFERENCES tb_employee(employeeNumber)
+
+ALTER TABLE tb_product ADD CONSTRAINT fk_product_productline FOREIGN KEY (productLine) REFERENCES tb_productlines(productLine)
+
+ALTER TABLE tb_order ADD CONSTRAINT fk_customer_order FOREIGN KEY (customerNumber) REFERENCES tb_customer(customerNumber)
+
+ALTER TABLE tb_orderDetail ADD CONSTRAINT fk_orderdetail_order FOREIGN KEY (orderNumber) REFERENCES tb_order(orderNumber)
+
+ALTER TABLE tb_orderDetail ADD CONSTRAINT fk_orderdetail_product FOREIGN KEY (productCode) REFERENCES tb_product(productCode)
+
+ALTER TABLE tb_payment ADD CONSTRAINT fk_payment_customer FOREIGN KEY (customerNumber) REFERENCES tb_customer(customerNumber)
+
+ALTER TABLE tb_employee ADD CONSTRAINT fk_employee_office FOREIGN KEY (officeCode) REFERENCES tb_office(officeCode)
+
+ALTER TABLE tb_employee ADD CONSTRAINT fk_employee_report FOREIGN KEY (reportsTo) REFERENCES tb_employee(employeeNumber)
+
+INSERT INTO tb_customer(
+	customerNumber,
+	customerName,
+	contactLastName,
+	contactFirstName,
+	phone,
+	addressLine1,
+	addressLine2,
+	city,
+	state,
+	postalCode,
+	country,
+	salesRepEmployeeNumber,
+	creditLimit
+) VALUES
+(1, 'Ardella Guiel', 'Ardella', 'Guiel', '948-515-3705', '6951 Spenser Terrace', '6951 Spenser Terrace', 'Majan', 'Jawa Timur', '02-072', 'Indonesia', 1, 1000000),
+(2, 'Laurel Behneke', 'Laurel', 'Behneke', '655-467-8499', '83 Morrow Lane', '83 Morrow Lane', 'Lazdijai', 'Jawa Tengah', '67001', 'Lithuania', 1, 1000000),
+(3, 'Starlin Havis', 'Starlin', 'Havis', '648-916-2245', '9 Pine View Way', '9 Pine View Way', 'Paris ', 'Jakarta Selatan', '75817', 'France', 2, 1500000),
+(4, 'Kathe Heakins', 'Kathe', 'Heakins', '605-716-5816', '2 Del Sol Hill', '2 Del Sol Hill', 'Taurisma', 'Jawa Barat', '02-072', 'Peru', 2, 1500000),
+(5, 'Freddie Holdren', 'Freddie', 'Holdren', '729-575-3595', '7 Autumn Leaf Park', '7 Autumn Leaf Park', 'Daliuhang', 'Kalimantan Timur', '2344', 'China', 3, 2000000),
+(6, 'Belinda Prier', 'Belinda', 'Prier', '672-835-8445', '0946 Chive Road', '0946 Chive Road', 'Guhua', 'Jawa Timur', '67001', 'China', 3, 2000000),
+(7, 'Matias Colville', 'Matias', 'Colville', '932-900-9696', '425 Swallow Hill', '425 Swallow Hill', 'Lovrenc na Pohorju', 'Jawa Barat', '2344', 'Slovenia', 4, 3000000),
+(8, 'Cherey Parsonage', 'Cherey', 'Parsonage', '197-435-6641', '2 Haas Junction', '2 Haas Junction', 'Dingtou', 'Sumatera Barat', '75817', 'China', 4, 3000000),
+(9, 'Tabbie Statham', 'Tabbie', 'Statham', '644-584-2154', '01 Kings Junction', '01 Kings Junction', 'Itatskiy', 'Kalimantan Barat', '652245', 'Russia', 5, 4000000),
+(10, 'Shea Rhodef', 'Shea', 'Rhodef', '535-385-0009', '5020 Sutteridge Court', '5020 Sutteridge Court', 'Ostroróg', 'Jakarta Barat', '67001', 'Poland', 5, 4000000)
+
+INSERT INTO tb_product(
+	productCode,
+	productName,
+	productLine,
+	productScale,
+	productVendor,
+	productDescription,
+	quantityInStock,
+	buyPrice,
+	MSRP
+) VALUES
+(1, '98', 1, 'big', 'Oldsmobile', 'Model Year: 1992', 100, 300000000, 350000000),
+(2, 'Century', 2, 'medium', 'Buick', 'Model Year: 2003', 50, 400000000, 450000000),
+(3, 'Ram Van 1500', 3, 'small', 'Dodge', 'Model Year: 2003', 20, 500000000, 550000000),
+(4, 'Eos', 4, 'big', 'Volkswagen', 'Model Year: 2008', 100, 300000000, 350000000),
+(5, 'Tracer', 8, 'medium', 'Mercury', 'Model Year: 1999', 50, 400000000, 450000000),
+(6, 'Electra', 2, 'small', 'Buick', 'Model Year: 1989', 20, 500000000, 550000000),
+(7, 'ES', 5, 'big', 'Lexus', 'Model Year: 1990', 100, 300000000, 350000000),
+(8, '929', 6, 'medium', 'Mazda', 'Model Year: 1992', 50, 400000000, 450000000),
+(9, 'Corrado', 4, 'small', 'Volkswagen', 'Model Year: 1990', 20, 500000000, 550000000),
+(10, 'Suburban 2500', 7, 'big', 'Chevrolet', 'Model Year: 2000', 100, 300000000, 350000000)
+
+INSERT INTO tb_productlines(
+	productLine,
+	textDescription,
+	htmlDescription,
+	image
+) VALUES
+(1, 'Oldsmobile', 'Oldsmobile html', 'image://Oldsmobile'),
+(2, 'Buick', 'Buick html', 'image://Buick'),
+(3, 'Dodge', 'Dodge html', 'image://Dodge'),
+(4, 'Volkswagen', 'Volkswagen html', 'image://Volkswagen'),
+(5, 'Lexus', 'Lexus html', 'image://Lexus'),
+(6, 'Mazda', 'Mazda html', 'image://Mazda'),
+(7, 'Chevrolet', 'Chevrolet html', 'image://Chevrolet'),
+(8, 'Mercury', 'Mercury html', 'image://Mercury')
+
+
+INSERT INTO tb_order(
+	orderNumber,
+	orderDate,
+	requiredDate,
+	shippedDate,
+	status,
+	comments,
+	customerNumber
+) VALUES
+(1, '2021-01-01', '2021-01-02', '2021-01-03', 'ON PROCESS', 'NICE', 1),
+(2, '2021-02-01', '2021-02-02', '2021-02-03', 'ON SHIPPING', 'NICE', 1),
+(3, '2021-03-01', '2021-03-02', '2021-03-03', 'COMPLETE', 'NICE', 2),
+(4, '2021-04-01', '2021-04-02', '2021-04-03', 'ON PROCESS', 'NICE', 2),
+(5, '2021-01-01', '2021-01-02', '2021-01-03', 'ON SHIPPING', 'NICE', 3),
+(6, '2021-02-01', '2021-02-02', '2021-02-03', 'COMPLETE', 'NICE', 3),
+(7, '2021-03-01', '2021-03-02', '2021-03-03', 'ON PROCESS', 'NICE', 4),
+(8, '2021-04-01', '2021-04-02', '2021-04-03', 'ON SHIPPING', 'NICE', 4),
+(9, '2021-01-01', '2021-01-02', '2021-01-03', 'COMPLETE', 'NICE', 5),
+(10, '2021-02-01', '2021-02-02', '2021-02-03', 'ON PROCESS', 'NICE', 5)
+
+INSERT INTO tb_orderDetail(
+	orderNumber,
+	productCode,
+	quantityOrder,
+	priceEach,
+	orderLineNumber
+) VALUES
+(1, 1, 1, 300000000, 2),
+(2, 1, 2, 300000000, 3),
+(3, 2, 1, 400000000, 4),
+(4, 2, 2, 400000000, 5),
+(5, 3, 1, 500000000, 6),
+(6, 3, 2, 500000000, 7),
+(7, 4, 1, 300000000, 8),
+(8, 4, 2, 300000000, 9),
+(9, 5, 1, 400000000, 10),
+(10, 5, 3, 400000000, 11)
+
+INSERT INTO tb_payment(
+	customerNumber,
+	checkNumber,
+	paymentDate,
+	amount
+) VALUES
+(1, 1, '2021-01-01', 300000000),
+(1, 2, '2021-02-01', 300000000),
+(2, 3, '2021-03-01', 400000000),
+(2, 4, '2021-04-01', 400000000),
+(3, 5, '2021-01-01', 500000000),
+(3, 6, '2021-02-01', 500000000),
+(4, 7, '2021-03-01', 300000000),
+(4, 8, '2021-04-01', 300000000),
+(5, 9, '2021-01-01', 400000000),
+(5, 10, '2021-02-01', 400000000)
+
+INSERT INTO tb_employee(
+	employeeNumber,
+	lastName,
+	firstName,
+	extension,
+	email,
+	officeCode,
+	reportsTo,
+	jobTitle
+) VALUES
+(1, 'Leheude', 'Alvera', '948-515-3702', 'aleheude0@skyrock.com', 1, 1, 'General manager'),
+(2, 'Lorenc', 'Wandie', '948-432-3703', 'wlorenc1@devhub.com', 1, 1, 'Asset manager'),
+(3, 'de Juares', 'Kaycee', '948-645-3704', 'kdejuares2@disqus.com', 1, 1, 'Relationship manager'),
+(4, 'MacNeilage', 'Niki', '948-765-3705', 'nmacneilage3@nbcnews.com', 2, 3, 'Asset manager'),
+(5, 'Obert', 'Debby', '948-324-3706', 'dobert4@blog.com', 1, 3, 'Bank teller'),
+(6, 'Heelis', 'Zollie', '948-245-3707', 'zheelis5@ibm.com', 1, 2, 'Loan officer'),
+(7, 'Jefferson', 'Cassandre', '543-518-3705', 'cjefferson6@umich.edu', 2, 3, 'Bank teller'),
+(8, 'Wyon', 'Chauncey', '948-515-3805', 'cwyon7@intel.com', 3, 4, ' Financial analyst'),
+(9, 'Hofner', 'Zeke', '948-515-9705', 'zhofner8@wsj.com', 4, 2, ' Financial analyst'),
+(10, 'Dagworthy', 'Libby', '923-515-3705', 'ldagworthy9@jalbum.net', 5, 4, 'Financial advisor')
+
+INSERT INTO tb_office(
+	officeCode,
+	city,
+	phone,
+	addressLine1,
+	addressLine2,
+	state,
+	country,
+	postalCode,
+	territory
+) VALUES
+(1, 'Majan', '948-515-3705', '6951 Spenser Terrace', '6951 Spenser Terrace', 'Jawa Timur', 'Indonesia', '02-072', 'Indonesia'),
+(2, 'Lazdijai', '655-467-8499', '83 Morrow Lane', '83 Morrow Lane', 'Jawa Tengah', 'Lithuania', '67001', 'Lithuania'),
+(3, 'Paris ', '648-916-2245', '9 Pine View Way', '9 Pine View Way', 'Jakarta Selatan', 'France', '75817', 'France'),
+(4, 'Taurisma', '605-716-5816', '2 Del Sol Hill', '2 Del Sol Hill', 'Jawa Barat', 'Peru', '02-072', 'Peru'),
+(5, 'Daliuhang', '729-575-3595', '7 Autumn Leaf Park', '7 Autumn Leaf Park', 'Kalimantan Timur', 'China', '2344', 'China');
+
+--JOIN CUSTOMER TABLE WITH PAYMENT TABLE
+SELECT * FROM tb_customer tc JOIN tb_payment tp ON tc.customerNumber = tp.customerNumber 
+
+--CREATE PROCEDURE TO GETORDER BY NAME ITS CUSTOMER
+CREATE PROCEDURE getOrder
+	@name	VARCHAR(30)
+AS
+	SELECT * FROM tb_order tbo
+	JOIN tb_customer tbc ON tbc.customerNumber = tbo.customerNumber 
+	WHERE tbc.customerName LIKE @name
+
+EXEC getOrder '%el%'
+
+--CREATE PROCEDURE TO GETPRODUCT BY NAME ITS PRODUCTLINES
+CREATE PROCEDURE getProduct
+	@productline	VARCHAR(30)
+AS
+	SELECT * FROM tb_product tbp
+	JOIN tb_productlines tbpl ON tbp.productLine = tbpl.productLine 
+	WHERE tbpl.textDescription LIKE @productline
+
+EXEC getProduct '%Buick%'
