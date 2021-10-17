@@ -1,0 +1,19 @@
+Panduan penggunaan MoviesApi:
+1. Posisi user di terminal berada di root projek ex: "./MoviesApi".
+2. Jalankan perintah "dotnet run" di terminal.
+
+3.1. Buka Swagger untuk mencoba endpoint melalui browser pada alamat url di https://localhost:5001/swagger/index.html
+===============================================================
+3.1.1. Untuk menggunakan endpoint AuthManagement/Register dibutuhkan JSON Body dengan field dan value dari: username (string), email (string), password (string).
+3.1.2. Untuk menggunakan endpoint AuthManagement/Login dibutuhkan JSON Body dengan field dan value dari: email (string), password (string).
+3.1.3. Untuk menggunakan endpoint AuthManagement/RefreshToken dibutuhkan JSON Body dengan field dan value dari: token (string), refreshToken (string).
+===============================================================
+
+3.2. Buka Postman untuk mencoba endpoint Movie dengan menambahkan TOKEN OTENTIKASI pada header
+===============================================================
+3.2.1. Untuk menggunakan endpoint menampilkan semua daftar Movie tidak membutuhkan JSON Body ataupun parameter query.
+3.2.2. Untuk menggunakan endpoint menampilkan salah satu Movie dibutuhkan parameter query, yakni id dari Movie.
+3.2.3. Untuk menggunakan endpoint menginput satu Movie baru dibutuhkan JSON Body dengan field dan value dari: title (string), overview (string), adult (boolean), voteAverage (double), voteCount (int)
+3.2.4. Untuk menggunakan endpoint memperbarui salah satu Movie dibutuhkan JSON Body dengan field dan value dari: title (string), overview (string), adult (boolean), voteAverage (double), voteCount (int) dan parameter query, yakni id dari Movie.
+3.2.2. Untuk menggunakan endpoint menghapus salah satu Movie dibutuhkan parameter query, yakni id dari Movie.
+===============================================================
