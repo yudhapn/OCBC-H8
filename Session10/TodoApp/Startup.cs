@@ -56,6 +56,9 @@ namespace TodoApp
 
             app.UseAuthorization();
 
+            app.UseAuthentication();
+
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
