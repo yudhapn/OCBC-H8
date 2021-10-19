@@ -20,6 +20,8 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Identity;
 
+using Microsoft.OpenApi.Models;
+
 namespace MoviesApi
 {
     public class Startup
@@ -74,10 +76,40 @@ namespace MoviesApi
             // options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             // );
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MoviesApi", Version = "v1" });
-            });
+
+            // services.AddSwaggerGen(c =>
+            // {
+            //     c.SwaggerDoc("v1", new OpenApiInfo { Title = "MoviesApi", Version = "v1" });
+            // });
+
+            services.AddSwaggerGen(setup =>
+ {
+    // Include 'SecurityScheme' to use JWT Authentication
+    var jwtSecurityScheme = new OpenApiSecurityScheme
+     {
+         Scheme = "bearer",
+         BearerFormat = "JWT",
+         Name = "JWT Authentication",
+         In = ParameterLocation.Header,
+         Type = SecuritySchemeType.Http,
+         Description = "Put **_ONLY_** your JWT Bearer token on textbox below!",
+
+         Reference = new OpenApiReference
+         {
+             Id = JwtBearerDefaults.AuthenticationScheme,
+             Type = ReferenceType.SecurityScheme
+         }
+     };
+
+     setup.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+
+     setup.AddSecurityRequirement(new OpenApiSecurityRequirement
+     {
+        { jwtSecurityScheme, Array.Empty<string>() }
+     });
+
+ });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

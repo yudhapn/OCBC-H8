@@ -68,8 +68,8 @@ namespace MoviesApi.Controllers
 
                 if (isCreated.Succeeded)
                 {
-                    var jwtToken = GenerateJwtToken(newUser);
-                    return Ok(jwtToken);
+                    var jwtToken = await GenerateJwtToken(newUser);
+                    return Ok("Berhasil register!");
                 }
                 else
                 {
@@ -120,7 +120,7 @@ namespace MoviesApi.Controllers
                         Success = false
                     });
                 }
-                var jwtToken = GenerateJwtToken(existingUser);
+                var jwtToken = await GenerateJwtToken(existingUser);
 
                 return Ok(jwtToken);
             }
@@ -178,7 +178,7 @@ namespace MoviesApi.Controllers
                     new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 }),
-                Expires = DateTime.UtcNow.AddSeconds(30),
+                Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
@@ -192,7 +192,7 @@ namespace MoviesApi.Controllers
                 IsRevorked = false,
                 UserId = user.Id,
                 AddedDate = DateTime.UtcNow,
-                ExpiryDate = DateTime.UtcNow.AddSeconds(30),
+                ExpiryDate = DateTime.UtcNow.AddMonths(6),
                 Token = RandomString(35) + Guid.NewGuid()
             };
 
@@ -295,6 +295,7 @@ namespace MoviesApi.Controllers
                 }
 
                 // Update current token
+                Console.WriteLine("Succeeded pass verifying token");
                 storedToken.IsUsed = true;
                 _movieDbContext.RefreshTokens.Update(storedToken);
                 await _movieDbContext.SaveChangesAsync();
@@ -321,7 +322,7 @@ namespace MoviesApi.Controllers
                     {
                         Success = false,
                         Errors = new List<string>() {
-                            "Something went wrong." + ex.Message + " " + _tokenValidationParams.IssuerSigningKey
+                            "Something went wrong." + ex.Message
                         }
                     };
                 }

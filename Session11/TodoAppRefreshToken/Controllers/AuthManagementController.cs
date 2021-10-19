@@ -121,7 +121,7 @@ namespace TodoAppWithJWT.Controllers
                         Success = false
                     });
                 }
-                var jwtToken = GenerateJwtToken(existingUser);
+                var jwtToken = await GenerateJwtToken(existingUser);
 
                 return Ok(jwtToken);
             }
@@ -320,7 +320,7 @@ namespace TodoAppWithJWT.Controllers
                     {
                         Success = false,
                         Errors = new List<string>() {
-                            "Something went wrong." + ex.Message + " " + _tokenValidationParams.IssuerSigningKey
+                            "Something went wrong." + ex.Message
                         }
                     };
                 }
