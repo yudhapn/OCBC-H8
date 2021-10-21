@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -9,16 +9,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using TodoAppRefreshToken.Configuration;
-using TodoAppWithJWT.Models.DTOs.Requests;
-using TodoAppWithJWT.Models.DTOs.Responses;
-using TodoAppRefreshToken.Models;
-using TodoAppRefreshToken.Models.DTOs.Requests;
-using TodoApp.Data;
+using PaymentAPI.Configuration;
+using PaymentAPI.Models.DTOs.Requests;
+using PaymentAPI.Models.DTOs.Responses;
+using PaymentAPI.Models;
+using PaymentAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
-namespace TodoAppWithJWT.Controllers
+namespace PaymentAPI.Controllers
 {
     [Route("api/[controller]")] // api/authManagement
     [ApiController]
@@ -27,21 +26,21 @@ namespace TodoAppWithJWT.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly JwtConfig _jwtConfig;
         private readonly TokenValidationParameters _tokenValidationParams;
-        private readonly ApiDbContext _apiDbContext;
+        private readonly PaymentApiDbContext _context;
 
         // TokenValidationParameters tokenValidationParameters,
         public AuthManagementController(
             UserManager<IdentityUser> userManager,
             IOptionsMonitor<JwtConfig> optionsMonitor,
             IOptionsMonitor<JwtBearerOptions> optionsMonitorJwtBearerOpt,
-            ApiDbContext apiDbContext
+            PaymentApiDbContext context
         )
         {
             _userManager = userManager;
             _jwtConfig = optionsMonitor.CurrentValue;
             var jwtBearerOpt = optionsMonitorJwtBearerOpt.Get(JwtBearerDefaults.AuthenticationScheme);
             _tokenValidationParams = jwtBearerOpt.TokenValidationParameters;
-            _apiDbContext = apiDbContext;
+            _context = context;
         }
 
         [HttpPost]
@@ -69,8 +68,8 @@ namespace TodoAppWithJWT.Controllers
 
                 if (isCreated.Succeeded)
                 {
-                    var jwtToken = GenerateJwtToken(newUser);
-                    return Ok(jwtToken);
+                    var jwtToken = await GenerateJwtToken(newUser);
+                    return Ok("Berhasil register!");
                 }
                 else
                 {
@@ -179,7 +178,7 @@ namespace TodoAppWithJWT.Controllers
                     new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 }),
-                Expires = DateTime.UtcNow.AddHours(6),
+                Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
@@ -193,12 +192,14 @@ namespace TodoAppWithJWT.Controllers
                 IsRevorked = false,
                 UserId = user.Id,
                 AddedDate = DateTime.UtcNow,
-                ExpiryDate = DateTime.UtcNow.AddSec(6),
+                ExpiryDate = DateTime.UtcNow.AddMonths(6),
                 Token = RandomString(35) + Guid.NewGuid()
             };
 
-            await _apiDbContext.RefreshTokens.AddAsync(refreshToken);
-            await _apiDbContext.SaveChangesAsync();
+            await _context.RefreshTokens.AddAsync(refreshToken);
+            // await _movieDbContext.SaveChangesAsync();
+            _context.SaveChanges();
+
             return new AuthResult()
             {
                 Token = jwtToken,
@@ -242,7 +243,7 @@ namespace TodoAppWithJWT.Controllers
                 }
 
                 // // Validation 4 - Validate existence of the token
-                var storedToken = await _apiDbContext.RefreshTokens.FirstOrDefaultAsync(x => x.Token == tokenRequest.RefreshToken);
+                var storedToken = await _context.RefreshTokens.FirstOrDefaultAsync(x => x.Token == tokenRequest.RefreshToken);
 
                 if (storedToken == null)
                 {
@@ -294,9 +295,10 @@ namespace TodoAppWithJWT.Controllers
                 }
 
                 // Update current token
+                Console.WriteLine("Succeeded pass verifying token");
                 storedToken.IsUsed = true;
-                _apiDbContext.RefreshTokens.Update(storedToken);
-                await _apiDbContext.SaveChangesAsync();
+                _context.RefreshTokens.Update(storedToken);
+                await _context.SaveChangesAsync();
 
                 // Generate a new token
                 var dbUser = await _userManager.FindByIdAsync(storedToken.UserId);
