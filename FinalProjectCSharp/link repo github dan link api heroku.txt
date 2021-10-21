@@ -1,0 +1,21 @@
+=========== Link Repository Github ===========
+https://github.com/yudhapn/OCBC-H8/tree/master/FinalProjectCSharp
+
+=========== Link Api Heroku ===========
+Base Url: https://payment-api-stormborax.herokuapp.com
+
+Endpoint JWT:
+1. Jwt Register: /api/AuthManagement/Register
+2. Jwt Login: /api/AuthManagement/Login
+3. Jwt RefreshToken: /api/AuthManagement/RefreshToken
+
+Endpoint PaymentDetail:
+1. Get List PaymentDetail [Method Get]: /api/PaymentDetail
+2. Get Satu PaymentDetail [Method Get]: /api/PaymentDetail
+    Dengan tambahan Query: {"key": "paymentDetailId ","value": "1"}
+3. Create PaymentDetail [Method Create]: /api/PaymentDetail
+    Dengan tamabahan Body: {"paymentDetailId": int,"cardOwnerName":"string","cardNumber":"string","expirationDate":"string","securityCode":"string"}
+4. Update PaymentDetail [Method Update]: /api/PaymentDetail
+    Dengan tambahan Query: {"key": "id","value": "1"}
+    Dengan tamabahan Body: {"paymentDetailId": int,"cardOwnerName":"string","cardNumber":"string","expirationDate":"string","securityCode":"string"}
+5. Delete PaymentDetail [Method Delete]: /api/PaymentDetail/{id}
