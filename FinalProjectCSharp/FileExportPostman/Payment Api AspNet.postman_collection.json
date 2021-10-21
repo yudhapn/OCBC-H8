@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "63315358-c06e-4aa1-8da2-2869cc6d0598",
+		"name": "Payment Api AspNet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://localhost:5001/api/AuthManagement/Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"money\",\r\n  \"email\": \"money@gmail.com\",\r\n  \"password\": \"Money.97\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/AuthManagement/Register",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"AuthManagement",
+						"Register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:5001/api/AuthManagement/Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"money@gmail.com\",\r\n  \"password\": \"Money.97\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/AuthManagement/Login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"AuthManagement",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:5001/api/AuthManagement/RefreshToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjY3YTJhYWExLTQ2YmItNGQ1Yy1hYjBjLTA4Mjk4YzIzYjBiOCIsImVtYWlsIjoibW9uZXlAZ21haWwuY29tIiwic3ViIjoibW9uZXlAZ21haWwuY29tIiwianRpIjoiMTg3NjZjMjUtYzU0Yi00Mjk0LTk0ZGYtYmI3Mjk0MDM2MThlIiwibmJmIjoxNjM0ODMzOTM1LCJleHAiOjE2MzQ4Mzc1MzUsImlhdCI6MTYzNDgzMzkzNX0.rbpR82ha5s0jOw4UMPZ0MD9TiMFkHVxk8IwikSongVw\",\r\n    \"refreshToken\": \"MJ0X1IRA1FN9H4ZDSVAKLG2RMTVDAWA7BRF76509ada-ea9a-46d8-8a43-dcfbabd7e70a\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/AuthManagement/RefreshToken",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"AuthManagement",
+						"RefreshToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:5001/api/PaymentDetail",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjY3YTJhYWExLTQ2YmItNGQ1Yy1hYjBjLTA4Mjk4YzIzYjBiOCIsImVtYWlsIjoibW9uZXlAZ21haWwuY29tIiwic3ViIjoibW9uZXlAZ21haWwuY29tIiwianRpIjoiOWNiOTRkNzQtOWRiMS00OGE5LTlmNzgtYTcxNjBkZTczOTE3IiwibmJmIjoxNjM0ODM0MDMzLCJleHAiOjE2MzQ4Mzc2MzMsImlhdCI6MTYzNDgzNDAzM30.6SGtTHBwRE-AlxHJxveEV9FHGjxB27nOfKImeZgEtv0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/PaymentDetail",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"PaymentDetail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:5001/api/PaymentDetail?paymentDetailId =1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjY3YTJhYWExLTQ2YmItNGQ1Yy1hYjBjLTA4Mjk4YzIzYjBiOCIsImVtYWlsIjoibW9uZXlAZ21haWwuY29tIiwic3ViIjoibW9uZXlAZ21haWwuY29tIiwianRpIjoiOWNiOTRkNzQtOWRiMS00OGE5LTlmNzgtYTcxNjBkZTczOTE3IiwibmJmIjoxNjM0ODM0MDMzLCJleHAiOjE2MzQ4Mzc2MzMsImlhdCI6MTYzNDgzNDAzM30.6SGtTHBwRE-AlxHJxveEV9FHGjxB27nOfKImeZgEtv0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:5001/api/PaymentDetail?paymentDetailId =1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"PaymentDetail"
+					],
+					"query": [
+						{
+							"key": "paymentDetailId ",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:5001/api/PaymentDetail",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjY3YTJhYWExLTQ2YmItNGQ1Yy1hYjBjLTA4Mjk4YzIzYjBiOCIsImVtYWlsIjoibW9uZXlAZ21haWwuY29tIiwic3ViIjoibW9uZXlAZ21haWwuY29tIiwianRpIjoiOWNiOTRkNzQtOWRiMS00OGE5LTlmNzgtYTcxNjBkZTczOTE3IiwibmJmIjoxNjM0ODM0MDMzLCJleHAiOjE2MzQ4Mzc2MzMsImlhdCI6MTYzNDgzNDAzM30.6SGtTHBwRE-AlxHJxveEV9FHGjxB27nOfKImeZgEtv0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"paymentDetailId\": 6,\r\n            \"cardOwnerName\": \"Yusril\",\r\n            \"cardNumber\": \"615361968\",\r\n            \"expirationDate\": \"18/11/2021\",\r\n            \"securityCode\": \"289553\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/PaymentDetail",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"PaymentDetail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:5001/api/PaymentDetail?id=6",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjY3YTJhYWExLTQ2YmItNGQ1Yy1hYjBjLTA4Mjk4YzIzYjBiOCIsImVtYWlsIjoibW9uZXlAZ21haWwuY29tIiwic3ViIjoibW9uZXlAZ21haWwuY29tIiwianRpIjoiOWNiOTRkNzQtOWRiMS00OGE5LTlmNzgtYTcxNjBkZTczOTE3IiwibmJmIjoxNjM0ODM0MDMzLCJleHAiOjE2MzQ4Mzc2MzMsImlhdCI6MTYzNDgzNDAzM30.6SGtTHBwRE-AlxHJxveEV9FHGjxB27nOfKImeZgEtv0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"paymentDetailId\": 6,\r\n    \"cardOwnerName\": \"Yusril Edited\",\r\n    \"cardNumber\": \"615361968\",\r\n    \"expirationDate\": \"18/11/2021\",\r\n    \"securityCode\": \"289553\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/PaymentDetail?id=6",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"PaymentDetail"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:5001/api/PaymentDetail/6",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjY3YTJhYWExLTQ2YmItNGQ1Yy1hYjBjLTA4Mjk4YzIzYjBiOCIsImVtYWlsIjoibW9uZXlAZ21haWwuY29tIiwic3ViIjoibW9uZXlAZ21haWwuY29tIiwianRpIjoiOWNiOTRkNzQtOWRiMS00OGE5LTlmNzgtYTcxNjBkZTczOTE3IiwibmJmIjoxNjM0ODM0MDMzLCJleHAiOjE2MzQ4Mzc2MzMsImlhdCI6MTYzNDgzNDAzM30.6SGtTHBwRE-AlxHJxveEV9FHGjxB27nOfKImeZgEtv0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/PaymentDetail/6",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"PaymentDetail",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,56 @@
+========= Panduan Api Lokal =========
+1. Buka projek PaymentAPI menggunakaan Visual Studio
+
+2. Hit Command "dotnet run" pada terminal
+
+3. Buka url: https://localhost:5001/swagger/index.html pada browser
+
+4. Test masing-masing endpoint:
+
+4.1. Test endpoin Jwt register membutuhkan inputan data username, email, dan password.
+
+4.2. Test endpoin Jwt Login membutuhkan inputan data email dan password yang telah terdaftar.
+
+4.3. Test endpoin Jwt RefreshToken membutuhkan inputan data token dan refreshToken yang diperoleh dari response endpoint Jwt Login.
+
+4.4. Test endpoin Get List PaymentDetail membutuhkan inputan data token pada header.
+
+4.4. Test endpoin Get Tunggal PaymentDetail membutuhkan inputan data token pada header dan inputan data paymentCardId pada body.
+
+4.5. Test endpoin Post (Create) PaymentDetail membutuhkan inputan data token pada header dan inputan data paymentDetailId, cardOwnerName, cardNumber, expirationDate, securityCode pada body.
+
+4.6. Test endpoin Post (Put) PaymentDetail membutuhkan inputan data token pada header dan inputan data paymentDetailId, cardOwnerName, cardNumber, expirationDate, securityCode pada body dan input id pada Query/Params.
+
+4.7. Test endpoin Post (Delete) PaymentDetail membutuhkan inputan data token pada header dan inputan data id pada url.
+
+========= Panduan Api Remote (Heroku) =========
+
+1. Buka aplikasi Postman
+
+2. Buka request baru
+
+3. Test masing-masing endpoint:
+
+3.1. Test endpoin Jwt register: https://localhost:5001/api/AuthManagement/Register
+      membutuhkan inputan data username, email, dan password.
+
+3.2. Test endpoin Jwt Login: https://localhost:5001/api/AuthManagement/Login
+      membutuhkan inputan data email dan password yang telah terdaftar.
+
+3.3. Test endpoin Jwt RefreshToken: https://localhost:5001/api/AuthManagement/RefreshToken
+      membutuhkan inputan data token dan refreshToken yang diperoleh dari response endpoint Jwt Login.
+
+3.4. Test endpoin Get List PaymentDetail: https://localhost:5001/api/PaymentDetail
+      membutuhkan inputan data token pada header.
+
+3.4. Test endpoin Get Tunggal PaymentDetail: https://localhost:5001/api/PaymentDetail
+      membutuhkan inputan data token pada header dan inputan data paymentCardId pada body.
+
+3.5. Test endpoin Post (Create) PaymentDetail: https://localhost:5001/api/PaymentDetail
+      membutuhkan inputan data token pada header dan inputan data paymentDetailId, cardOwnerName, cardNumber, expirationDate, securityCode pada body.
+
+3.6. Test endpoin Post (Put) PaymentDetail: https://localhost:5001/api/PaymentDetail
+      membutuhkan inputan data token pada header dan inputan data paymentDetailId, cardOwnerName, cardNumber, expirationDate, securityCode pada body dan input id pada Query/Params.
+
+3.7. Test endpoin Post (Delete) PaymentDetail: https://localhost:5001/api/PaymentDetail/{id}
+      membutuhkan inputan data token pada header dan inputan data id pada url.
