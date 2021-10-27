@@ -1,0 +1,26 @@
+<form>
+    <div class="input-group mb-3">
+        <input 
+        type="text"
+        name="inputTodo"
+        placeholder="Enter todo..."
+        class="form-control"
+        [(ngModel)]="contentTodo"
+        />
+        <input 
+        *ngIf="!isEditMode"
+        type="submit"
+        value="Add Todo"
+        class="btn btn-primary"
+        (click)="onAddTodo()"
+        />
+        <input 
+        *ngIf="isEditMode"
+        type="submit"
+        value="Edit Todo"
+        class="btn btn-primary"
+        (click)="onEditTodo()"
+        />
+
+    </div>
+</form>
