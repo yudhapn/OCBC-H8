@@ -6,6 +6,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { AddTodoFormComponent } from './components/add-todo-form/add-todo-form.component';
 import { CamelcasePipe } from './custom-pipes/camelcase.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { CamelcasePipe } from './custom-pipes/camelcase.pipe';
     AddTodoFormComponent,
     CamelcasePipe,
   ],
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
