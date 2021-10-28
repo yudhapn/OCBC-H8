@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="addTaskForm" (ngSubmit)="onSubmit()">
     <div class="input-group mb-3">
         <input 
         type="text"
@@ -6,21 +6,27 @@
         placeholder="Enter todo..."
         class="form-control"
         [(ngModel)]="contentTodo"
+        (focus)="onFocus()"
+        (focusout)="onFocusOut()"
+        formControlName="taskInput"
         />
         <input 
-        *ngIf="!isEditMode"
+        *ngIf="!isUpdateMode"
         type="submit"
         value="Add Todo"
         class="btn btn-primary"
-        (click)="onAddTodo()"
         />
         <input 
-        *ngIf="isEditMode"
+        *ngIf="isUpdateMode"
         type="submit"
         value="Edit Todo"
         class="btn btn-primary"
-        (click)="onEditTodo()"
         />
-
+    </div>
+    <div *ngIf="taskInput?.errors?.required && isEditMode" class="alert alert-danger">
+        Task is required
+    </div>
+    <div *ngIf="taskInput?.errors?.minlength" class="alert alert-danger">
+        Task is less than {{ taskInput?.errors?.minlength?.requiredLength}}
     </div>
 </form>

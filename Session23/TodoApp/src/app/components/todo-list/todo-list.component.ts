@@ -13,7 +13,7 @@ export class TodoListComponent implements OnInit {
     completed: false,
   };
   selectedIndex: number = -1;
-  isEditMode = false;
+  isUpdateMode = false;
 
   ngOnInit(): void {
     this.todos = [
@@ -25,22 +25,20 @@ export class TodoListComponent implements OnInit {
   toggleDone(id: number) {
     this.todos.map((value, index) => {
       if (index == id) value.completed = !value.completed;
-      console.log(value);
       return value;
     });
   }
 
   editTodo(id: number) {
     this.selectedTodo = this.todos[id];
-    this.isEditMode = true;
-    console.log("editTodo", this.selectedTodo)
+    this.isUpdateMode = true;
   }
 
   updateTodo(updatedValue: any) {
     let id = updatedValue.id;
     let todo = updatedValue.todo;
     this.todos[id] = todo;
-    this.isEditMode = false;
+    this.isUpdateMode = false;
     console.log(updatedValue)
     this.resetInput();
   }
