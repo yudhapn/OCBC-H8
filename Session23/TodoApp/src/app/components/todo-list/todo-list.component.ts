@@ -39,11 +39,15 @@ export class TodoListComponent implements OnInit {
     let todo = updatedValue.todo;
     this.todos[id] = todo;
     this.isUpdateMode = false;
-    console.log(updatedValue)
+    console.log(updatedValue);
     this.resetInput();
   }
 
   deleteTodo(id: number) {
+    if (this.isUpdateMode) {
+      this.isUpdateMode = false;
+      this.resetInput();
+    }
     this.todos = this.todos.filter((_, index) => index != id);
     this.selectedIndex = id;
   }

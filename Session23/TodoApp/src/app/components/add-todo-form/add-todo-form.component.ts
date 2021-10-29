@@ -25,7 +25,7 @@ export class AddTodoFormComponent implements OnChanges {
   @Output() editTodoEvent = new EventEmitter<any>();
   contentTodo: string = '';
   isEditMode: boolean = false;
-
+  isSubmitted: boolean = false;
   submitButtonState = SubmitButtonTaskState;
 
   errorMessage = { task: {} };
@@ -52,6 +52,7 @@ export class AddTodoFormComponent implements OnChanges {
   }
 
   onSubmit() {
+    this.isSubmitted = true;
     this.validateTaskInput();
     if (this.isObjectEmpty(this.errorMessage['task'])) {
       if (this.isUpdateMode) {
@@ -70,6 +71,7 @@ export class AddTodoFormComponent implements OnChanges {
       completed: false,
     };
     this.newTodoEvent.emit(todo);
+    this.isSubmitted = false;
   }
 
   onEditTodo() {
@@ -77,6 +79,7 @@ export class AddTodoFormComponent implements OnChanges {
       this.inputTodo.content = this.contentTodo;
       this.editTodoEvent.emit({ id: this.selectedIndex, todo: this.inputTodo });
     }
+    this.isSubmitted = false;
   }
 
   ngOnChanges(): void {
@@ -85,6 +88,7 @@ export class AddTodoFormComponent implements OnChanges {
 
   onFocus(): void {
     if (this.contentTodo == '') {
+      this.isSubmitted = false;
       this.isEditMode = !this.isEditMode;
     }
   }

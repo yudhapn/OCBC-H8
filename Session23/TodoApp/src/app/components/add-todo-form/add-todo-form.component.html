@@ -23,7 +23,7 @@
         class="btn btn-primary"
         />
     </div>
-    <div *ngIf="taskInput?.errors?.required && isEditMode" class="alert alert-danger">
+    <div *ngIf="(taskInput?.errors?.required && isEditMode) || (taskInput?.errors?.required && isSubmitted)" class="alert alert-danger">
         Task is required
     </div>
     <div *ngIf="taskInput?.errors?.minlength" class="alert alert-danger">
